@@ -8,9 +8,21 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      fontFamily: {
+        oswald: ['Oswald', 'sans-serif'],
+      },
+      fontWeight: {
+        extralight: '200',
+        light: '300',
+        regular: '400',
+        medium: '500',
+        semibold: '600',
+        bold: '700',
+      },
+      fontSize: {
+        '10xl': '10rem',
+        '12xl': '12rem',
+        '15xl': '15rem',
       },
     },
   },
