@@ -1,29 +1,77 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import king from "@/assets/king.png";
 import king1 from "@/assets/king1.png";
+import queen from "@/assets/queen.png"
 import pp from "@/assets/pp1.png";
+import GridPattern from "@/components/ui/grid-pattern";
 
 const About = () => {
+  const [inView, setInView] = useState(false);
+
+  const handleScroll = () => {
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+      const rect = aboutSection.getBoundingClientRect();
+      if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+        setInView(true);
+      } else {
+        setInView(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="relative min-h-screen" id="about">
+    <div className="relative min-h-screen w-full" id="about">
+      <GridPattern
+        width={30}
+        height={30}
+        x={-1}
+        y={-1}
+        strokeDasharray={"4 2"}
+      />
       <div
-        className="absolute top-0 left-0 w-1/4 bg-no-repeat hidden md:block"
+        className="md:hidden absolute top-0 left-0 w-1/2 bg-no-repeat opacity-20 md:opacity-100"
         style={{
           backgroundImage: `url(${king1.src})`,
-          backgroundSize: "cover",
-          backgroundPosition: "top",
+          backgroundSize: "50% 100%",
+          backgroundPosition: "left",
           minHeight: "100vh",
           height: "100%",
         }}
       ></div>
       <div
-        className="absolute top-0 left-0 w-full opacity-50 bg-no-repeat md:hidden block -z-10"
+        className="md:hidden absolute top-0 right-0 w-1/2 bg-no-repeat opacity-20 md:opacity-100"
         style={{
-          backgroundImage: `url(${king.src})`,
-          backgroundSize: "cover",
-          backgroundPosition: "top",
+          backgroundImage: `url(${queen.src})`,
+          backgroundSize: "50% 100%",
+          backgroundPosition: "right",
+          minHeight: "100vh",
+          height: "100%",
+        }}
+      ></div>
+            <div
+        className="hidden md:block absolute top-0 left-0 w-1/2 bg-no-repeat"
+        style={{
+          backgroundImage: `url(${king1.src})`,
+          backgroundSize: "25% 100%",
+          backgroundPosition: "left",
+          minHeight: "100vh",
+          height: "100%",
+        }}
+      ></div>
+      <div
+        className="hidden md:block absolute top-0 right-0 w-1/2 bg-no-repeat"
+        style={{
+          backgroundImage: `url(${queen.src})`,
+          backgroundSize: "25% 100%",
+          backgroundPosition: "right",
           minHeight: "100vh",
           height: "100%",
         }}
@@ -31,7 +79,7 @@ const About = () => {
       <div className="relative w-full mx-auto pt-20">
         <h1 className="text-center text-5xl font-bold mb-6">ABOUT ME</h1>
         <div className="relative mx-auto mt-20 md:w-[70%] w-[80%]">
-          <div className="md:w-full md:ml-10">
+          <div className="md:w-full">
             <p className="md:text-xl leading-relaxed indent-8 text-justify">
               Hello! I'm Vishnu, a passionate Frontend Developer with a strong
               foundation in building dynamic and responsive websites. I

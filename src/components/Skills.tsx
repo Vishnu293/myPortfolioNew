@@ -1,97 +1,97 @@
-import React from 'react';
-import Image, { StaticImageData } from 'next/image';
-import img1 from '@/assets/queen.png';
-import python from '@/assets/python_yellow.png';
-import java from '@/assets/java_gold.png';
-import c from '@/assets/c_gold.png';
-import html from '@/assets/html_gold.png';
-import css from '@/assets/css_gold.png';
-import js from '@/assets/js_gold.png';
-import ts from '@/assets/ts_gold.png';
-import react from '@/assets/react_gold.png';
-import node from '@/assets/node_gold.png';
-import mongodb from '@/assets/mongodb_gold.png';
-import express from '@/assets/expressjs_gold.png';
-import next from '@/assets/nextjs_gold.png';
-import tailwind from '@/assets/tailwind_gold.png';
-import mysql from '@/assets/mysql_gold.png';
-import sqlite from '@/assets/sqlite_gold.png';
-import git from '@/assets/github_gold.png';
-import blank from '@/assets/blank.png'
+import React from "react";
+import {
+    SiPython,
+    SiJavascript,
+    SiReact,
+    SiTailwindcss,
+    SiHtml5,
+    SiCss3,
+    SiTypescript,
+    SiNodedotjs,
+    SiExpress,
+    SiMongodb,
+    SiNextdotjs,
+    SiFramer,
+    SiGithub,
+} from "react-icons/si";
+import { FaJava } from "react-icons/fa6";
+import { GrMysql } from "react-icons/gr";
+import { motion } from "framer-motion";
+import GridPattern from "@/components/ui/grid-pattern";
+import queen from "@/assets/queen.png"
+import { GiChessQueen } from "react-icons/gi";
+import Image from "next/image";
+
+type IconType = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
 const Skills = () => {
-    const generateChessboard = (name: string, imageSet: StaticImageData[]) => {
-        const squares = [];
-
-        for (let row = 0; row < 4; row++) {
-            for (let col = 0; col < 4; col++) {
-                const isBlack = (row + col) % 2 === 1;
-                const image = imageSet[(row * 4 + col) % imageSet.length];
-
-                squares.push(
-                    <div
-                        key={`${row}-${col}`}
-                        className={`w-full h-full flex items-center justify-center ${isBlack ? 'bg-black' : 'bg-white'}`}
-                    >
-                        {image ? (
-                            <Image
-                                src={image}
-                                alt={`Piece on ${row}-${col}`}
-                                width={40}
-                                height={40}
-                                style={{
-                                    objectFit: "fill"
-                                }}
-                            />
-                        ) : null}
-                    </div>
-                );
-            }
-        }
-
-        return (
-            <div className="flex flex-col items-center justify-center w-full h-full">
-                <div className="grid grid-cols-4 gap-0 w-full h-full">{squares}</div>
-                <p className="mt-2 text-center text-black font-medium">{name}</p>
-            </div>
-        );
-    };
-
-    const frontendImages = [html, css, js, react, next, ts, tailwind, blank, blank, blank, blank, blank, blank, blank, blank, blank, blank];
-    const backendImages = [node, express, blank, blank, blank, blank, blank, blank, blank, blank, blank, blank, blank, blank, blank, blank];
-    const programmingLanguagesImages = [python, java, c, blank, blank, blank, blank, blank, blank, blank, blank, blank, blank, blank, blank, blank];
-    const databasesImages = [mongodb, mysql, sqlite, git, blank, blank, blank, blank, blank, blank, blank, blank, blank, blank, blank, blank];
+    // Define the icons for each row
+    const skillRows: IconType[][] = [
+        [SiNextdotjs, SiMongodb, SiExpress, SiReact, SiNodedotjs], // Row 1
+        [SiJavascript, SiTypescript, SiTailwindcss, SiHtml5, SiCss3], // Row 2
+        [SiPython, FaJava, GrMysql, SiFramer, SiGithub], // Row 3
+    ];
+    const skillNames: string[] = [
+        "Next.js",
+        "Mongodb",
+        "Express.js",
+        "React.js",
+        "Node.js",
+        "Javascript",
+        "Typescript",
+        "Tailwind CSS",
+        "HTML",
+        "CSS",
+        "Python",
+        "Java",
+        "MySQL",
+        "Framer-Motion",
+        "Github",
+    ];
 
     return (
-        <div className="relative h-screen" id='skills'>
-            <div className="relative h-full mx-auto w-full pt-20 pb-10 flex flex-col gap-[5%]">
-                <h1 className="h-[10%] text-center text-5xl font-bold">
-                    SKILLS
-                </h1>
-                <div className="grid grid-cols-[40%,auto,40%] grid-rows-[45%,auto,45%] w-[90%] h-[85%] mx-auto">
-                    <div className="w-full h-full flex justify-center items-center">
-                        <div className="w-[100%] h-[100%]">{generateChessboard('Frontend Development', frontendImages)}</div>
+        <div className="relative h-auto w-full pb-10" id="skills"><GridPattern
+            width={30}
+            height={30}
+            x={-1}
+            y={-1}
+            strokeDasharray={"4 2"}
+        />
+            <div className="relative w-full pt-20">
+                <h1 className="text-center text-5xl font-bold mb-20">SKILLS</h1>
+                <div className="flex flex-col gap-6 w-[80%] mx-auto text-black pt-5 border-black border-2 shadow-2xl">
+                    <div className="flex flex-col items-center gap-4 w-[90%] mx-auto ">
+                        {skillRows.map((row, rowIndex) => (
+                            <div key={rowIndex} className="flex justify-between w-full">
+                                {row.map((Icon, iconIndex) => (
+                                    <Icon key={iconIndex} className="lg:text-7xl md:text-5xl text-4xl" />
+                                ))}
+                            </div>
+                        ))}
                     </div>
-                    <div className="w-full h-full col-span-1 row-span-3 flex items-center justify-center bg-transparent">
-                        <Image
-                            src={img1}
-                            alt="Central Image"
-                            width={128}
-                            height={128}
-                            className="object-contain"
-                        />
-                    </div>
-
-                    <div className="w-full h-full flex justify-center items-center">
-                        <div className="w-[100%] h-[100%]">{generateChessboard('Backend Development', backendImages)}</div>
-                    </div>
-                    <div className="w-full h-full bg-white"></div>
-                    <div className="w-full h-full bg-white"></div>
-                    <div className="w-full h-full flex justify-center items-center">
-                        <div className="w-[100%] h-[100%]">{generateChessboard('Programming Languages', programmingLanguagesImages)}</div>
-                    </div>
-                    <div className="w-full h-full flex justify-center items-center">
-                        <div className="w-[100%] h-[100%]">{generateChessboard('Databases & Version C', databasesImages)}</div>
+                    <div className="w-full bg-black text-white lg:pb-2">
+                        <div className="flex overflow-hidden whitespace-nowrap">
+                            {[...Array(2)].map((_, i) => (
+                                <motion.h1
+                                    initial={{ x: "-100%" }}
+                                    animate={{ x: "0%" }}
+                                    transition={{
+                                        repeat: Infinity,
+                                        ease: "linear",
+                                        duration: 15
+                                    }}
+                                    key={i}
+                                    className="mt-4 pb-4 text-xl font-bold leading-none tracking-tighter md:text-3xl lg:text-5xl"
+                                >
+                                    {skillNames.map((name, index) => (
+                                        <span key={index} className="mr-2">
+                                            {name}
+                                            {index < skillNames.length - 1 && ", "}
+                                        </span>
+                                    ))}
+                                </motion.h1>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
