@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import {
     SiPython,
@@ -25,11 +26,10 @@ import Image from "next/image";
 type IconType = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
 const Skills = () => {
-    // Define the icons for each row
     const skillRows: IconType[][] = [
-        [SiNextdotjs, SiMongodb, SiExpress, SiReact, SiNodedotjs], // Row 1
-        [SiJavascript, SiTypescript, SiTailwindcss, SiHtml5, SiCss3], // Row 2
-        [SiPython, FaJava, GrMysql, SiFramer, SiGithub], // Row 3
+        [SiNextdotjs, SiMongodb, SiExpress, SiReact, SiNodedotjs],
+        [SiJavascript, SiTypescript, SiTailwindcss, SiHtml5, SiCss3],
+        [SiPython, FaJava, GrMysql, SiFramer, SiGithub],
     ];
     const skillNames: string[] = [
         "Next.js",
@@ -59,7 +59,7 @@ const Skills = () => {
         />
             <div className="relative w-full pt-20">
                 <h1 className="text-center text-5xl font-bold mb-20">SKILLS</h1>
-                <div className="flex flex-col gap-6 w-[80%] mx-auto text-black pt-5 border-black border-2 shadow-2xl">
+                <div className="flex flex-col gap-6 w-[80%] mx-auto text-black dark:text-white pt-5 border-black dark:border-white border-2 shadow-2xl">
                     <div className="flex flex-col items-center gap-4 w-[90%] mx-auto ">
                         {skillRows.map((row, rowIndex) => (
                             <div key={rowIndex} className="flex justify-between w-full">
@@ -69,7 +69,7 @@ const Skills = () => {
                             </div>
                         ))}
                     </div>
-                    <div className="w-full bg-black text-white lg:pb-2">
+                    <div className="w-full bg-black dark:bg-white text-white dark:text-black lg:pb-2">
                         <div className="flex overflow-hidden whitespace-nowrap">
                             {[...Array(2)].map((_, i) => (
                                 <motion.h1

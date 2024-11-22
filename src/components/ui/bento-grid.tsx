@@ -213,8 +213,8 @@ const cards = [
     content: () => {
       return (
         <main>
-          <b>Description:</b> Designed and developed a personal portfolio website to showcase my skills, projects, and achievements.<br/>
-          <b>Technologies Used:</b> HTML, CSS, JSX<br/>
+          <b>Description:</b> Designed and developed a personal portfolio website to showcase my skills, projects, and achievements.<br />
+          <b>Technologies Used:</b> HTML, CSS, JSX<br />
           <b>Key Features:</b>
           <ul>
             <li>Implemented a responsive and user-friendly design.</li>
@@ -238,8 +238,8 @@ const cards = [
     content: () => {
       return (
         <main>
-          <b>Description:</b> ValueVue addresses the challenges traditional stores face from e-commerce giants by integrating local businesses into the digital sphere. Developed as part of my B.Tech final year project, it aims to enhance the retail experience for both customers and retailers.<br/>
-          <b>Technologies Used:</b> MERN Stack (MongoDB, Express.js, React.js, Node.js)<br/>
+          <b>Description:</b> ValueVue addresses the challenges traditional stores face from e-commerce giants by integrating local businesses into the digital sphere. Developed as part of my B.Tech final year project, it aims to enhance the retail experience for both customers and retailers.<br />
+          <b>Technologies Used:</b> MERN Stack (MongoDB, Express.js, React.js, Node.js)<br />
           <b>Key Features:</b>
           <ul>
             <li>Implemented a responsive and user-friendly design.</li>
@@ -267,8 +267,8 @@ const cards = [
     content: () => {
       return (
         <main>
-          <b>Description:</b> ValueVue addresses the challenges traditional stores face from e-commerce giants by integrating local businesses into the digital sphere. Developed as part of my B.Tech final year project, it aims to enhance the retail experience for both customers and retailers.<br/>
-          <b>Technologies Used:</b> MERN Stack (MongoDB, Express.js, React.js, Node.js)<br/>
+          <b>Description:</b> ValueVue addresses the challenges traditional stores face from e-commerce giants by integrating local businesses into the digital sphere. Developed as part of my B.Tech final year project, it aims to enhance the retail experience for both customers and retailers.<br />
+          <b>Technologies Used:</b> MERN Stack (MongoDB, Express.js, React.js, Node.js)<br />
           <b>Key Features:</b>
           <ul>
             <li>Implemented a responsive and user-friendly design.</li>
@@ -296,8 +296,8 @@ const cards = [
     content: () => {
       return (
         <main>
-          <b>Description:</b> ValueVue addresses the challenges traditional stores face from e-commerce giants by integrating local businesses into the digital sphere. Developed as part of my B.Tech final year project, it aims to enhance the retail experience for both customers and retailers.<br/>
-          <b>Technologies Used:</b> MERN Stack (MongoDB, Express.js, React.js, Node.js)<br/>
+          <b>Description:</b> ValueVue addresses the challenges traditional stores face from e-commerce giants by integrating local businesses into the digital sphere. Developed as part of my B.Tech final year project, it aims to enhance the retail experience for both customers and retailers.<br />
+          <b>Technologies Used:</b> MERN Stack (MongoDB, Express.js, React.js, Node.js)<br />
           <b>Key Features:</b>
           <ul>
             <li>Implemented a responsive and user-friendly design.</li>

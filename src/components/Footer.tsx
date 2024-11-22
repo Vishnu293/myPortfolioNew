@@ -1,3 +1,5 @@
+"use client"
+
 import { motion } from "framer-motion";
 import { GiChessBishop } from "react-icons/gi";
 import { GiChessRook } from "react-icons/gi";
