@@ -23,7 +23,7 @@ export default function Footer() {
           <GiChessRook className="text-white text-base" />
           <GiChessKing className="text-white text-xl" />
           <span className="text-yellow-500 text-xl font-semibold">
-            "Every Move Counts"
+          &quot;Every Move Counts&quot;
           </span>
           <GiChessQueen className="text-white text-xl" />
           <GiChessKnight className="text-white text-base" />

@@ -13,7 +13,7 @@ const Hero = () => {
       <div className="">
         <BoxReveal boxColor={"gold"} duration={0.2}>
           <h1 className="font-semibold text-4xl md:text-7xl lg:text-8xl mb-4">
-            Hi, I'm Vishnu C
+            Hi, I&apos;m Vishnu C
           </h1>
         </BoxReveal>
         <BoxReveal boxColor={"gold"} duration={0.3}>

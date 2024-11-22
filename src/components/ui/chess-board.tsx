@@ -9,10 +9,9 @@ import React, {
 import {
   IconArrowNarrowLeft,
   IconArrowNarrowRight,
-  IconX,
 } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Image, { ImageProps } from "next/image";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 
@@ -91,7 +90,7 @@ export const Carousel = ({
     return window && window.innerWidth < 768;
   };
 
-  const handleCardClick = (card: Card | undefined, index: number) => {
+  const handleCardClick = (card: Card | undefined) => {
     if (!card || !card.src || !card.category) {
       return;
     }
@@ -159,7 +158,7 @@ export const Carousel = ({
                       },
                     }}
                     key={"card" + index}
-                    onClick={() => handleCardClick(card, index)}
+                    onClick={() => handleCardClick(card)}
                     className={cn(
                       "last:pr-[5%] md:last:pr-[1%]",
                       index % 2 === 0 ? "bg-black" : "bg-white"
@@ -191,7 +190,7 @@ export const Carousel = ({
                       },
                     }}
                     key={"card" + (index + 8)}
-                    onClick={() => handleCardClick(card, index)}
+                    onClick={() => handleCardClick(card)}
                     className={cn(
                       "last:pr-[5%] md:last:pr-[1%]",
                       (index + 8) % 2 === 0 ? "bg-white" : "bg-black"
@@ -244,7 +243,7 @@ export const Card = ({
 }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { onCardClose, currentIndex } = useContext(CarouselContext);
+  const { onCardClose } = useContext(CarouselContext);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {

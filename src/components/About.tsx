@@ -79,7 +79,7 @@ const About = () => {
               animate={inView ? { opacity: 1 } : {}}
               transition={{ duration: 3, ease: "easeOut" }}
             >
-              Hello! I'm Vishnu, a passionate Frontend Developer with a strong
+              Hello! I&apos;m Vishnu, a passionate Frontend Developer with a strong
               foundation in building dynamic and responsive websites. I
               specialize in using modern web technologies like HTML, CSS,
               JavaScript, and React, with a keen interest in UI/UX design to
@@ -109,7 +109,7 @@ const About = () => {
               transition={{ duration: 3, ease: "easeOut" }}
             >
               Feel free to explore my portfolio and reach out if you have any
-              questions or opportunities for collaboration. Let's build
+              questions or opportunities for collaboration. Let&apos;s build
               something amazing together!
             </motion.p>
           </div>

@@ -19,9 +19,6 @@ import { FaJava } from "react-icons/fa6";
 import { GrMysql } from "react-icons/gr";
 import { motion } from "framer-motion";
 import GridPattern from "@/components/ui/grid-pattern";
-import queen from "@/assets/queen.png"
-import { GiChessQueen } from "react-icons/gi";
-import Image from "next/image";
 
 type IconType = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
