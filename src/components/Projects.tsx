@@ -7,12 +7,14 @@ import {
     IconX,
 } from "@tabler/icons-react";
 import GridPattern from "@/components/ui/grid-pattern";
+import ShimmerButton from "./ui/shimmer-button";
 
 type Card = {
     category: string;
     title: string;
     content: string;
     src: string;
+    githubUrl: string;
 };
 
 export function Projects() {
@@ -121,6 +123,24 @@ export function Projects() {
                                         <p className="text-xl text-center">{selectedCard.category}</p><br />
                                         <p>{selectedCard.content}</p>
                                     </div>
+                                    <div className="flex justify-center">
+                                        <a
+                                            href={selectedCard.githubUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <ShimmerButton
+                                                borderRadius="0"
+                                                shimmerColor="black"
+                                                background="gold"
+                                                className="w-20 shadow-2xl text-black font-medium py-2 px-4"
+
+                                            >
+                                                Github
+                                            </ShimmerButton>
+                                        </a>
+                                    </div>
+
                                 </motion.div>
                             </div>
                         )}
@@ -145,18 +165,21 @@ const data = [
         title: "Personal Portfolio Website",
         src: "https://i.postimg.cc/CLyj4H2z/portfolio-old.png",
         content: "Designed and developed a personal portfolio website to showcase my skills, projects, and achievements.",
+        githubUrl: "https://github.com/Vishnu293/vishnu_portfolio"
     },
     {
         category: "Using MERN Stack",
         title: "ValueVue",
         src: "https://i.postimg.cc/Prm1VvGK/valuevue.png",
-        content: "ValueVue addresses the challenges traditional stores face from e-commerce giants by integrating local businesses into the digital sphere. Developed as part of my B.Tech final year project, it aims to enhance the retail experience for both customers and retailers."
+        content: "ValueVue addresses the challenges traditional stores face from e-commerce giants by integrating local businesses into the digital sphere. Developed as part of my B.Tech final year project, it aims to enhance the retail experience for both customers and retailers.",
+        githubUrl: "https://github.com/Vishnu293/ValueVue-Frontend"
     },
     {
         category: "Using Next.js, Tailwind CSS, Framer Motion",
         title: "Personal Portfolio Website New",
-        src: "https://i.postimg.cc/3JHvGryG/portfolio-new.png",
+        src: "https://i.postimg.cc/Hs5c94GK/portfolio-new.png",
         content: "Designed and developed a personal portfolio website to showcase my skills, projects, and achievements.",
+        githubUrl: "https://github.com/Vishnu293/nPortfolio"
     },
 ];
 

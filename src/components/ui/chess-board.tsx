@@ -26,6 +26,7 @@ type Card = {
   title: string;
   category: string;
   content: string;
+  githubUrl: string;
 };
 
 export const CarouselContext = createContext<{

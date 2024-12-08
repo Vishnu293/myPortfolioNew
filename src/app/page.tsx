@@ -14,7 +14,7 @@ export default function Home() {
         backgroundRepeat: 'repeat',
       }}
         animate={{
-          backgroundPositionX: ["0%", "100%"],
+          backgroundPositionX: ["100%", "0%"],
         }}
         transition={{
           repeat: Infinity,
