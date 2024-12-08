@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import ThemeSwitch from "./ui/ThemeSwitch";
 import ShimmerButton from "@/components/ui/shimmer-button";
+import Image from "next/image";
+import Logo from "@/assets/logo.png"
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,10 +44,10 @@ const Header = () => {
   return (
     <div className="w-full h-24 bg-transparent flex px-5 md:px-10 lg:px-14 justify-between fixed z-50 text-black dark:text-white font-semibold items-center text-xl">
       <button
-        className="w-12 h-auto text-gold font-mono text-7xl z-50"
+        className="w-14 md:w-auto h-auto text-gold font-mono text-7xl z-50"
         onClick={() => scrollToSection("home")}
       >
-        V
+        <Image src={Logo} alt="logo.png" width={80}/>
       </button>
       {showNav && (
         <div
@@ -85,7 +87,7 @@ const Header = () => {
         <div className="flex justify-between p-5">
           <button
             onClick={toggleMenu}
-            className={`text-gold absolute right-14 top-8 transition-transform duration-300 ${isMenuOpen ? "rotate-180" : ""
+            className={`text-gold absolute md:right-14 right-5 top-8 transition-transform duration-300 ${isMenuOpen ? "rotate-180" : ""
               }`}
           >
             <FaTimes size={30} />
