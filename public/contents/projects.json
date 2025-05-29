@@ -1,0 +1,35 @@
+[
+  {
+    "category": "Using HTML, CSS, JavaScript",
+    "title": "Personal Portfolio Website",
+    "images": [
+      "https://res.cloudinary.com/dqdgle0dz/image/upload/v1748543055/portfolio-old_n2frtj.png"
+    ],
+    "content": "Designed and developed a personal portfolio website to showcase my skills, projects, and achievements.",
+    "github": "https://github.com/Vishnu293/vishnu_portfolio"
+  },
+  {
+    "category": "Using MERN Stack",
+    "title": "ValueVue",
+    "images": [
+      "https://res.cloudinary.com/dqdgle0dz/image/upload/v1748542586/12_t0hspy.png",
+      "https://res.cloudinary.com/dqdgle0dz/image/upload/v1748542586/13_nn46ei.png",
+      "https://res.cloudinary.com/dqdgle0dz/image/upload/v1748542583/16_etxlbf.png",
+      "https://res.cloudinary.com/dqdgle0dz/image/upload/v1748542576/7_lycnuy.png",
+      "https://res.cloudinary.com/dqdgle0dz/image/upload/v1748542578/3_ppcjjx.png",
+      "https://res.cloudinary.com/dqdgle0dz/image/upload/v1748542578/4_jfthhd.png",
+      "https://res.cloudinary.com/dqdgle0dz/image/upload/v1748542578/5_cmmhgy.png"
+    ],
+    "content": "ValueVue addresses the challenges traditional stores face from e-commerce giants by integrating local businesses into the digital sphere. Developed as part of my B.Tech final year project.",
+    "github": "https://github.com/Vishnu293/ValueVue-Frontend"
+  },
+  {
+    "category": "Using Next.js, Tailwind CSS, Framer Motion",
+    "title": "Personal Portfolio Website New",
+    "images": [
+      "https://res.cloudinary.com/dqdgle0dz/image/upload/v1748543079/portfolio-new_suyaz7.png"
+    ],
+    "content": "Designed and developed a personal portfolio website to showcase my skills, projects, and achievements.",
+    "github": "https://github.com/Vishnu293/nPortfolio"
+  }
+]
