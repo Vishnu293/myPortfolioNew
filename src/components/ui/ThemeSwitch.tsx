@@ -4,7 +4,6 @@ import { FiSun, FiMoon } from "react-icons/fi"
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import Image from "next/image"
-import Empty from "@/assets/empty.png"
 
 export default function ThemeSwitch() {
   const [mounted, setMounted] = useState(false)
@@ -14,7 +13,7 @@ export default function ThemeSwitch() {
 
   if (!mounted) return (
     <Image
-      src={Empty}
+      src="/empty.png"
       width={36}
       height={36}
       sizes="36x36"

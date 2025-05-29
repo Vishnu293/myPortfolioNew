@@ -5,7 +5,7 @@ import { Providers } from "./providers";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
-  title: "My Portfolio",
+  title: "Vishnu's Portfolio",
   description: "Created by Vishnu C",
 };
 
@@ -16,11 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="">
+      <body>
         <Providers>
           <Header />
-          {children}
-          <Toaster richColors position="top-center"/>
+          <main role="main">{children}</main>
+          <Toaster richColors position="top-center" />
         </Providers>
       </body>
     </html>

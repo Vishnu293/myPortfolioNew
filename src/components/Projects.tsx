@@ -1,186 +1,191 @@
 "use client";
-import Image from "next/image";
-import React, { useState, useEffect } from "react";
-import { Carousel, Card } from "@/components/ui/chess-board";
-import { motion } from "framer-motion";
-import {
-    IconX,
-} from "@tabler/icons-react";
-import GridPattern from "@/components/ui/grid-pattern";
-import ShimmerButton from "./ui/shimmer-button";
 
-type Card = {
-    category: string;
-    title: string;
-    content: string;
-    src: string;
-    githubUrl: string;
+import React, { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import GridPattern from "./ui/grid-pattern";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Thumbs } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+import ShimmerButton from "./ui/shimmer-button";
+import Image from "next/image";
+import { SiGithub } from "react-icons/si";
+
+type Project = {
+  category: string;
+  title: string;
+  images: string[];
+  content: string;
+  github: string;
 };
 
-export function Projects() {
-    const [selectedCard, setSelectedCard] = useState<Card | null>(null);
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-    const [isSelected, setIsSelected] = useState<boolean>(false);
-    const [isLg, setIsLg] = useState<boolean>(false);
+const getStyles = (idx: number) => {
+  const isWhite = idx % 2 === 0;
+  return {
+    isWhite,
+    bgColor: isWhite ? "bg-white dark:bg-black" : "bg-black dark:bg-white",
+    textColor: isWhite ? "text-black dark:text-white" : "text-white dark:text-black",
+    borderColor: isWhite ? "border-black dark:border-white" : "border-white dark:border-black",
+    hoverBgColor: isWhite ? "hover:bg-black dark:hover:bg-white" : "hover:bg-white dark:hover:bg-black",
+    hoverTextColor: isWhite
+      ? "group-hover:text-white dark:group-hover:text-black"
+      : "group-hover:text-black dark:group-hover:text-white",
+    hoverBorderColor: isWhite
+      ? "hover:border-white dark:hover:border-black"
+      : "hover:border-black dark:hover:border-white",
+  };
+};
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsLg(window.innerWidth >= 768);
-        };
+export default function Projects() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
-        handleResize();
-        window.addEventListener("resize", handleResize);
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
+  useEffect(() => {
+    fetch("/contents/projects.json")
+      .then((res) => res.json())
+      .then((data) => setProjects(data))
+      .catch(() => setProjects([]));
+  }, []);
 
-    useEffect(() => {
-        if (isLg) {
-            setSelectedCard(data[0]);
-            setIsSelected(true);
-        } else {
-            setSelectedCard(null);
-            setIsSelected(false);
-        }
-    }, [isLg]);
+  useEffect(() => {
+    if (selectedProject !== null) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
 
-    const handleCardSelection = (card: Card) => {
-        setSelectedCard(card);
-        setIsSelected(true);
+    return () => {
+      document.body.classList.remove("overflow-hidden");
     };
+  }, [selectedProject]);
 
-    const handleClose = () => {
-        setIsSelected(false);
-    };
+  const openModal = (idx: number) => setSelectedProject(idx);
+  const closeModal = () => setSelectedProject(null);
 
-    const handleMouseEnter = (index: number) => {
-        setHoveredIndex(index);
-    };
+  return (
+    <section className="relative h-auto w-full pb-10" id="projects" aria-labelledby="projects-heading">
+      <GridPattern width={30} height={30} x={-1} y={-1} strokeDasharray={"4 2"} />
 
-    const handleMouseLeave = () => {
-        setHoveredIndex(null);
-    };
+      <div className="relative w-full pt-20">
+        <h1 id="projects-heading" className="text-center text-5xl font-bold mb-20" tabIndex={-1}>
+          PROJECTS
+        </h1>
 
-    const cards = data.map((card, index) => (
-        <Card
-            key={card.src}
-            card={card}
-            index={index}
-            onHoverEnter={handleMouseEnter}
-            onHoverLeave={handleMouseLeave}
-            isBlurred={hoveredIndex !== null && hoveredIndex !== index}
-        />
-    ));
+        <div className="container mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 justify-items-center items-center max-w-md md:max-w-xl lg:max-w-6xl">
+          {projects.map((project, idx) => {
+            const { bgColor, textColor, borderColor, hoverBgColor, hoverTextColor, hoverBorderColor } = getStyles(idx);
 
-    const animationVariants = {
-        hidden: { opacity: 0, x: 50 },
-        visible: { opacity: 1, x: 0 },
-    };
-
-    return (
-        <div className="relative w-full" id="projects">
-            <div className="relative w-full pt-20">
-                <h1 className="text-center text-5xl font-bold mb-20"><GridPattern
-                    width={30}
-                    height={30}
-                    x={-1}
-                    y={-1}
-                    strokeDasharray={"4 2"}
-                />PROJECTS</h1>
-                <div className="flex flex-col md:flex-row justify-between items-center relative">
-                    <div className={`w-full md:w-[40%] h-full relative`}>
-                        {isSelected && selectedCard && (
-                            <div className="relative w-[90%] h-full shadow-lg mx-auto rounded-3xl bg-white dark:bg-black dark:text-white">
-                                <motion.div
-                                    key={selectedCard.title}
-                                    className="flex flex-col gap-5 p-5 justify-center"
-                                    initial="hidden"
-                                    animate="visible"
-                                    variants={animationVariants}
-                                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                                >
-                                    {!isLg && (
-                                        <button
-                                            className="absolute top-2 right-2 bg-gray-800 text-white p-2 rounded-full"
-                                            onClick={handleClose}
-                                        >
-                                            <IconX />
-                                        </button>
-                                    )}
-
-                                    <div className="mx-auto h-[200px]">
-                                        <Image
-                                            src={selectedCard.src}
-                                            alt={selectedCard.title}
-                                            width={300}
-                                            height={300}
-                                            className="object-contain w-full h-full mx-auto"
-                                        />
-                                    </div>
-                                    <div className="h-[200px] overflow-auto scrollbar-hide">
-                                        <p className="text-2xl text-center">{selectedCard.title}</p>
-                                        <p className="text-xl text-center">{selectedCard.category}</p><br />
-                                        <p>{selectedCard.content}</p>
-                                    </div>
-                                    <div className="flex justify-center">
-                                        <a
-                                            href={selectedCard.githubUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            <ShimmerButton
-                                                borderRadius="0"
-                                                shimmerColor="black"
-                                                background="gold"
-                                                className="w-20 shadow-2xl text-black font-medium py-2 px-4"
-
-                                            >
-                                                Github
-                                            </ShimmerButton>
-                                        </a>
-                                    </div>
-
-                                </motion.div>
-                            </div>
-                        )}
-                    </div>
-
-                    <div className={`w-full md:w-[60%] p-5 md:pr-0 h-full relative ${isSelected ? 'hidden md:block' : ''}`}>
-                        <div className="w-full h-full bg-white border-y-2 md:border-r-0 md:border-l-2 border-x-2 border-black">
-                            <div style={{ height: '100%', transform: 'scale(1)', transformOrigin: 'top left' }}>
-                                <Carousel items={cards} onCardSelect={handleCardSelection} />
-                            </div>
-                        </div>
-                    </div>
+            return (
+              <motion.article
+                key={idx}
+                role="listitem"
+                tabIndex={0}
+                aria-describedby={`project-desc-${idx}`}
+                className={`w-full shadow-2xl max-w-[160px] sm:max-w-[200px] md:max-w-[240px] lg:max-w-[360px] aspect-square
+                relative cursor-pointer rounded-xl overflow-hidden
+                ${bgColor} ${textColor} border-2 ${borderColor}
+                transition-colors duration-300 group ${hoverBgColor} ${hoverTextColor} ${hoverBorderColor}`}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                onClick={() => openModal(idx)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    openModal(idx);
+                  }
+                }}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                whileHover={{
+                  scale: 1.02,
+                  transition: { type: "spring", stiffness: 300, damping: 20 },
+                }}
+              >
+                <div className={`absolute inset-0 flex flex-col justify-center items-center text-center p-6 ${textColor} ${hoverTextColor}`}>
+                  <span className="hidden sm:block select-none pointer-events-none mb-4 text-[clamp(3rem,5vw,6rem)]" aria-hidden="true">♝</span>
+                  <h3 className="text-sm sm:text-base md:text-lg font-semibold text-center px-2" id={`project-desc-${idx}`}>
+                    {project.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-center p-2">(click here)</p>
                 </div>
-            </div>
+              </motion.article>
+            );
+          })}
         </div>
-    );
+
+        <AnimatePresence>
+          {selectedProject !== null && projects[selectedProject] && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-white/60 dark:bg-black/60 backdrop-blur-sm"
+              role="dialog"
+              aria-modal="true"
+              onClick={closeModal}
+            >
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="relative h-[80vh] w-[600px] md:w-[800px] bg-white dark:bg-black rounded-2xl border-2 border-black dark:border-white shadow-2xl flex flex-col overflow-hidden"
+              >
+                <ShimmerButton
+                  onClick={closeModal}
+                  shimmerColor="black"
+                  background="gold"
+                  className="absolute bottom-4 right-4 w-20 shadow-2xl font-medium py-2 px-4 text-black"
+                  aria-label="Close Modal"
+                >
+                  Close
+                </ShimmerButton>
+
+                <Swiper
+                  modules={[Navigation, Thumbs]}
+                  navigation
+                  className="w-full max-h-[400px] bg-white dark:bg-black rounded-t-xl md:mt-6"
+                >
+                  {projects[selectedProject].images.map((imgUrl, index) => (
+                    <SwiperSlide key={index}>
+                      <Image
+                        src={imgUrl}
+                        alt={`${projects[selectedProject].title} screenshot ${index + 1}`}
+                        width={800}
+                        height={400}
+                        className="w-full h-full object-contain"
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+
+                <div className="p-6 md:p-8 text-black dark:text-white flex flex-col gap-4" id="modal-desc">
+                  <div>
+                    <p className="uppercase text-sm tracking-widest text-gray-600 dark:text-gray-400">
+                      {projects[selectedProject].category}
+                    </p>
+                    <h2 className="text-3xl font-bold mt-1" id="modal-title">
+                      {projects[selectedProject].title}
+                    </h2>
+                  </div>
+                  <p className="text-base leading-relaxed">{projects[selectedProject].content}</p>
+
+                  <div className="flex gap-4 mt-4">
+                    <a
+                      href={projects[selectedProject].github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-lg transition text-sm font-medium"
+                    >
+                      <SiGithub className="w-5 h-5 mr-2" />
+                      GitHub Repo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </section>
+  );
 }
-
-const data = [
-    {
-        category: "Using HTML, CSS, JavaScript",
-        title: "Personal Portfolio Website",
-        src: "https://i.postimg.cc/CLyj4H2z/portfolio-old.png",
-        content: "Designed and developed a personal portfolio website to showcase my skills, projects, and achievements.",
-        githubUrl: "https://github.com/Vishnu293/vishnu_portfolio"
-    },
-    {
-        category: "Using MERN Stack",
-        title: "ValueVue",
-        src: "https://i.postimg.cc/Prm1VvGK/valuevue.png",
-        content: "ValueVue addresses the challenges traditional stores face from e-commerce giants by integrating local businesses into the digital sphere. Developed as part of my B.Tech final year project, it aims to enhance the retail experience for both customers and retailers.",
-        githubUrl: "https://github.com/Vishnu293/ValueVue-Frontend"
-    },
-    {
-        category: "Using Next.js, Tailwind CSS, Framer Motion",
-        title: "Personal Portfolio Website New",
-        src: "https://i.postimg.cc/Hs5c94GK/portfolio-new.png",
-        content: "Designed and developed a personal portfolio website to showcase my skills, projects, and achievements.",
-        githubUrl: "https://github.com/Vishnu293/nPortfolio"
-    },
-];
-
-export default Projects;
