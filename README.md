@@ -2,7 +2,7 @@
 
 Welcome to my personal portfolio website! I am Vishnu, a passionate web developer specializing in frontend technologies. This portfolio showcases my projects, skills, and background.
 
-### Website Link: [My Portfolio](https://myportfolio-beryl-psi-57.vercel.app)
+### Website Link: [My Portfolio](https://vishnucdev.vercel.app)
 Thank you for visiting my portfolio !
 
 ---
