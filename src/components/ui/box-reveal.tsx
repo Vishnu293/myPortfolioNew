@@ -51,6 +51,7 @@ const BoxReveal = ({ children, width = "fit-content", boxColor, duration }: BoxR
           right: 0,
           zIndex: 20,
           background: boxColor || "#5046e6",
+          pointerEvents: "none", 
         }}
       />
     </div>
