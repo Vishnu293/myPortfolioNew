@@ -31,5 +31,14 @@
     ],
     "content": "Designed and developed a personal portfolio website to showcase my skills, projects, and achievements.",
     "github": "https://github.com/Vishnu293/nPortfolio"
+  },
+  {
+    "category": "Using Next.js, TypeScript, Tailwind CSS",
+    "title": "Windows Blinds & Shades Website",
+    "images": [
+      "https://res.cloudinary.com/dqdgle0dz/image/upload/v1748613831/Blinds4u_Home_ccxaps.png"
+    ],
+    "content": "Developed a responsive and modern website for a USA-based Windows Blinds & Shades business, focusing on clean UI/UX and smooth animations. Detailed project information and visuals are available upon client approval.",
+    "github": ""
   }
 ]

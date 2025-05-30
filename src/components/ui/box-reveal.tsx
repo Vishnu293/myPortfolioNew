@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 
 interface BoxRevealProps {
@@ -10,50 +10,39 @@ interface BoxRevealProps {
   duration?: number;
 }
 
-export const BoxReveal = ({
-  children,
-  width = "fit-content",
-  boxColor,
-  duration,
-}: BoxRevealProps) => {
+const BoxReveal = ({ children, width = "fit-content", boxColor, duration }: BoxRevealProps) => {
   const mainControls = useAnimation();
   const slideControls = useAnimation();
-
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
-  useEffect(() => {
+  const triggerAnimations = useCallback(() => {
     if (isInView) {
       slideControls.start("visible");
       mainControls.start("visible");
-    } else {
-      slideControls.start("hidden");
-      mainControls.start("hidden");
     }
-  }, [isInView, mainControls, slideControls]);
+  }, [isInView, slideControls, mainControls]);
+
+  useEffect(() => {
+    triggerAnimations();
+  }, [triggerAnimations]);
 
   return (
-    <div ref={ref} style={{ position: "relative", width, overflow: "hidden" }}>
+    <div ref={ref} style={{ position: "relative", width, overflow: "hidden", willChange: "transform" }}>
       <motion.div
-        variants={{
-          hidden: { opacity: 0, y: 75 },
-          visible: { opacity: 1, y: 0 },
-        }}
+        variants={{ hidden: { opacity: 0, y: 75 }, visible: { opacity: 1, y: 0 } }}
         initial="hidden"
         animate={mainControls}
-        transition={{ duration: duration ? duration : 0.5, delay: 0.25 }}
+        transition={{ duration: duration || 0.5, delay: 0.25 }}
       >
         {children}
       </motion.div>
 
       <motion.div
-        variants={{
-          hidden: { left: 0 },
-          visible: { left: "100%" },
-        }}
+        variants={{ hidden: { left: 0 }, visible: { left: "100%" } }}
         initial="hidden"
         animate={slideControls}
-        transition={{ duration: duration ? duration : 0.5, ease: "easeIn" }}
+        transition={{ duration: duration || 0.5, ease: "easeIn" }}
         style={{
           position: "absolute",
           top: 4,
@@ -61,7 +50,7 @@ export const BoxReveal = ({
           left: 0,
           right: 0,
           zIndex: 20,
-          background: boxColor ? boxColor : "#5046e6",
+          background: boxColor || "#5046e6",
         }}
       />
     </div>
