@@ -52,9 +52,8 @@ const Header = () => {
       {showNav && (
         <nav
           aria-label="Primary navigation"
-          className={`hidden md:flex md:gap-10 gap-5 transition-opacity duration-500 ${
-            scrollingDown ? "opacity-0" : "opacity-100"
-          }`}
+          className={`hidden md:flex md:gap-10 gap-5 transition-opacity duration-500 ${scrollingDown ? "opacity-0" : "opacity-100"
+            }`}
         >
           {sections.slice(0, 4).map((section) => (
             <button
@@ -71,9 +70,8 @@ const Header = () => {
         </nav>
       )}
       <span
-        className={`dark:text-foreground md:hidden ${
-          scrollingDown ? "opacity-0" : "opacity-100"
-        }`}
+        className={`dark:text-foreground md:hidden ${scrollingDown ? "opacity-0" : "opacity-100"
+          }`}
       >
         <button
           aria-label="Toggle theme"
@@ -94,53 +92,50 @@ const Header = () => {
         >
           <FaBars
             size={30}
-            className={`transition-transform duration-500 ${
-              isMenuOpen ? "rotate-90" : ""
-            }`}
+            className={`transition-transform duration-500 ${isMenuOpen ? "rotate-90" : ""
+              }`}
           />
         </button>
       </div>
-      <nav
-        id="mobile-menu"
-        role="menu"
-        aria-hidden={!isMenuOpen}
-        className={`fixed top-0 right-0 bg-black text-white w-full h-screen flex flex-col justify-center items-center transition-transform duration-300 ${
-          isMenuOpen ? "transform translate-x-0" : "transform translate-x-full"
-        }`}
-      >
-        <div className="flex justify-between p-5 w-full">
-          <button
-            onClick={toggleMenu}
-            aria-label="Close menu"
-            className={`text-gold absolute md:right-14 right-5 top-8 transition-transform duration-300 ${
-              isMenuOpen ? "rotate-180" : ""
+      {isMenuOpen && (
+        <nav
+          id="mobile-menu"
+          role="menu"
+          aria-hidden="false"
+          className={`fixed top-0 right-0 bg-black text-white w-full h-screen flex flex-col justify-center items-center transition-transform duration-300 ${isMenuOpen ? "transform translate-x-0" : "transform translate-x-full"
             }`}
-          >
-            <FaTimes size={30} />
-          </button>
-        </div>
-        <div className="flex flex-col items-center justify-center w-full">
-          {sections.map((section) => (
+        >
+          <div className="flex justify-between p-5 w-full">
             <button
-              key={section}
-              className={`py-3 tracking-tighter font-medium md:text-7xl text-6xl hover:text-gold transform transition-all duration-500 ${
-                isMenuOpen ? "translate-x-0" : "translate-x-full"
-              }`}
-              onClick={() => scrollToSection(section)}
-              role="menuitem"
+              onClick={toggleMenu}
+              aria-label="Close menu"
+              className={`text-gold absolute md:right-14 right-5 top-8 transition-transform duration-300 ${isMenuOpen ? "rotate-180" : ""
+                }`}
             >
-              {section === "about"
-                ? "About Me"
-                : section.charAt(0).toUpperCase() + section.slice(1).replace("-", " ")}
+              <FaTimes size={30} />
             </button>
-          ))}
-        </div>
-      </nav>
+          </div>
+          <div className="flex flex-col items-center justify-center w-full">
+            {sections.map((section) => (
+              <button
+                key={section}
+                className={`py-3 tracking-tighter font-medium md:text-7xl text-6xl hover:text-gold transform transition-all duration-500 ${isMenuOpen ? "translate-x-0" : "translate-x-full"
+                  }`}
+                onClick={() => scrollToSection(section)}
+                role="menuitem"
+              >
+                {section === "about"
+                  ? "About Me"
+                  : section.charAt(0).toUpperCase() + section.slice(1).replace("-", " ")}
+              </button>
+            ))}
+          </div>
+        </nav>
+      )}
       {showNav && (
         <div
-          className={`hidden md:flex gap-10 items-center transition-opacity duration-500 ${
-            scrollingDown ? "opacity-0" : "opacity-100"
-          }`}
+          className={`hidden md:flex gap-10 items-center transition-opacity duration-500 ${scrollingDown ? "opacity-0" : "opacity-100"
+            }`}
           aria-label="Secondary navigation"
         >
           <span className="dark:text-foreground">
