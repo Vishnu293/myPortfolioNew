@@ -170,15 +170,25 @@ export default function Projects() {
                   <p className="text-base leading-relaxed">{projects[selectedProject].content}</p>
 
                   <div className="flex gap-4 mt-4">
-                    <a
-                      href={projects[selectedProject].github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-lg transition text-sm font-medium"
-                    >
-                      <SiGithub className="w-5 h-5 mr-2" />
-                      GitHub Repo
-                    </a>
+                    {projects[selectedProject].github ? (
+                      <a
+                        href={projects[selectedProject].github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-4 py-2 bg-black dark:bg-white text-white dark:text-black rounded-lg transition text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-300"
+                      >
+                        <SiGithub className="w-5 h-5 mr-2" />
+                        GitHub Repo
+                      </a>
+                    ) : (
+                      <button
+                        disabled
+                        className="inline-flex items-center px-4 py-2 bg-gray-400 dark:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg cursor-not-allowed text-sm font-medium"
+                      >
+                        <SiGithub className="w-5 h-5 mr-2" />
+                        GitHub Repo
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
